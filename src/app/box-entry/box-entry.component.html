@@ -1,0 +1,98 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Width</th>
+      <th scope="col">Depth</th>
+      <th scope="col">Height</th>
+      <th scope="col">Qty</th>
+      <th scope="col">Button</th>
+    </tr>
+    <tr class="table table-primary">
+      <td>New</td>
+      <td><input #width type="text" /></td>
+      <td><input #depth type="text" /></td>
+      <td><input #height type="text" /></td>
+
+      <td>
+        <select #selectedQty>
+          <option *ngFor="let qty of qtys" [ngValue]="qty">{{ qty }}</option>
+        </select>
+      </td>
+
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="
+            addBox(width.value, depth.value, height.value, selectedQty.value);
+            width.value = '';
+            height.value = '';
+            depth.value = '';
+            selectedQty.value = '1'
+          "
+        >
+          Add
+        </button>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let box of boxes; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>
+        <input
+          [disabled]="!box.isEditable"
+          type="text"
+          [(ngModel)]="box.width"
+        />
+      </td>
+      <td>
+        <input
+          [disabled]="!box.isEditable"
+          type="text"
+          [(ngModel)]="box.depth"
+        />
+      </td>
+      <td>
+        <input
+          [disabled]="!box.isEditable"
+          type="text"
+          [(ngModel)]="box.height"
+        />
+      </td>
+      <td>
+        <select [disabled]="!box.isEditable" [(ngModel)]="box.qty">
+          <option *ngFor="let qty of qtys" [value]="qty">{{ qty }}</option>
+        </select>
+      </td>
+
+      <td>
+        <button class="btn btn-danger" (click)="deleteBox(i)">Delete</button>
+        <button
+          class="btn btn-warning"
+          (click)="box.isEditable = !box.isEditable"
+          *ngIf="!box.isEditable"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-success"
+          *ngIf="box.isEditable"
+          (click)="box.isEditable = !box.isEditable"
+        >
+          Save
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success btn-block" (click)="goToThreeTest()">
+        Analyze
+      </button>
+    </div>
+  </div>
+</div>

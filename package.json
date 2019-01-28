@@ -20,8 +20,12 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
+    "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
+    "three": "^0.100.0",
+    "three-orbitcontrols": "^2.99.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
